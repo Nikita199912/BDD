@@ -1,2 +1,1 @@
-## Описание найденных дефектов
-    В ходе тестирования был обнаружен баг с возможностью ухода баланса в минус. Подробное описание в [Issue #1](https://github.com/Nikita199912/BDD/issues/1)
+[![Java CI with Gradle](https://github.com/Nikita199912/BDD/actions/workflows/gradle.yml/badge.svg)](https://github.com/Nikita199912/BDD/actions/workflows/gradle.yml)
