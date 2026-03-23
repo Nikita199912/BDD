@@ -33,6 +33,9 @@ public class MoneyTransferTest {
         var transferPage = dashboardPage.selectCardToTransfer(0);
         transferPage.makeTransfer(String.valueOf(amount), DataHelper.getSecondCardInfo().getCardNumber());
 
+
+        dashboardPage = new DashboardPage();
+
         assertEquals(expectedBalanceFirstCard, dashboardPage.getCardBalance(0));
         assertEquals(expectedBalanceSecondCard, dashboardPage.getCardBalance(1));
     }
@@ -42,8 +45,13 @@ public class MoneyTransferTest {
         var firstCardBalance = dashboardPage.getCardBalance(0);
         var secondCardBalance = dashboardPage.getCardBalance(1);
         var amount = DataHelper.generateInvalidAmount(secondCardBalance);
+
         var transferPage = dashboardPage.selectCardToTransfer(0);
         transferPage.makeTransfer(String.valueOf(amount), DataHelper.getSecondCardInfo().getCardNumber());
+
+        dashboardPage = new DashboardPage();
+
+
         assertEquals(firstCardBalance, dashboardPage.getCardBalance(0));
         assertEquals(secondCardBalance, dashboardPage.getCardBalance(1));
     }
