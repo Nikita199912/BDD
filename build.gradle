@@ -19,7 +19,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    // Задаем свойство headless для CI
     systemProperty 'selenide.headless', System.getProperty('selenide.headless', 'true')
 }
 

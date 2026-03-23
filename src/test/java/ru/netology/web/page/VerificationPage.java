@@ -9,7 +9,6 @@ public class VerificationPage {
     private SelenideElement verifyButton = $("[data-test-id=action-verify]");
 
     public VerificationPage() {
-        // Проверяем, что поле кода появилось
         codeField.shouldBe(visible);
     }
 

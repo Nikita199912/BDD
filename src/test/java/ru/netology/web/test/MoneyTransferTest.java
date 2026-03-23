@@ -39,21 +39,11 @@ public class MoneyTransferTest {
 
     @Test
     void shouldNotTransferIfAmountMoreThanBalance() {
-        // 1. Берем начальные балансы
         var firstCardBalance = dashboardPage.getCardBalance(0);
         var secondCardBalance = dashboardPage.getCardBalance(1);
-
-        // 2. Генерируем сумму БОЛЬШЕ баланса
         var amount = DataHelper.generateInvalidAmount(secondCardBalance);
-
-        // 3. Делаем перевод
         var transferPage = dashboardPage.selectCardToTransfer(0);
         transferPage.makeTransfer(String.valueOf(amount), DataHelper.getSecondCardInfo().getCardNumber());
-
-        // 4. ПРОВЕРЯЕМ НЕИЗМЕННОСТЬ БАЛАНСОВ (Пункт 4 правок Андрея)
-        // Если приложение НЕ БАЖНОЕ, то балансы останутся прежними, и этот тест будет ЗЕЛЕНЫМ.
-        // Если приложение БАЖНОЕ (как сейчас), то балансы ИЗМЕНЯТСЯ, и этот тест УПАДЕТ с AssertionFailedError.
-        // Это и будет "правильное" падение теста.
         assertEquals(firstCardBalance, dashboardPage.getCardBalance(0));
         assertEquals(secondCardBalance, dashboardPage.getCardBalance(1));
     }
