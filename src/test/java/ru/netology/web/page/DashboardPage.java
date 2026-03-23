@@ -1,12 +1,19 @@
 package ru.netology.web.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage {
+    private SelenideElement heading = $("[data-test-id=dashboard]");
     private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
+
+    public DashboardPage() {
+        heading.shouldBe(Condition.visible);
+    }
 
     public int getCardBalance(int index) {
         var text = cards.get(index).text();
@@ -14,7 +21,7 @@ public class DashboardPage {
     }
 
     public TransferPage selectCardToTransfer(int index) {
-        cards.get(index).$("button").click();
+        $$("[data-test-id='action-deposit']").get(index).click();
         return new TransferPage();
     }
 

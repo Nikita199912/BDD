@@ -1,11 +1,21 @@
 package ru.netology.web.page;
 
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class VerificationPage {
+    private SelenideElement codeField = $("[data-test-id=code] input");
+    private SelenideElement verifyButton = $("[data-test-id=action-verify]");
+
+    public VerificationPage() {
+        // Проверяем, что поле кода появилось
+        codeField.shouldBe(visible);
+    }
+
     public DashboardPage validVerify(String verificationCode) {
-        $("[data-test-id=code] input").setValue(verificationCode);
-        $("[data-test-id=action-verify]").click();
+        codeField.setValue(verificationCode);
+        verifyButton.click();
         return new DashboardPage();
     }
 }
